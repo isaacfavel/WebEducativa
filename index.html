@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sistema Institucional - Centro Educativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Agregamos un poco de CSS para asegurar que los menús desplegables funcionen bien con hover -->
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100 font-sans">
     
+    <!-- 1. CINTILLO SUPERIOR (Estilo Gobierno) -->
+    <div class="bg-[#11322b] text-white text-xs py-2 px-4 md:px-10 flex justify-end gap-6 items-center">
+        <a href="#" class="hover:underline">Gobierno</a>
+        <a href="#" class="hover:underline">Participa</a>
+        <a href="#" class="hover:underline">Datos</a>
+        <span class="cursor-pointer">🔍</span>
+    </div>
+
+    <!-- 2. CABECERA DE LOGOS (Estilo Institucional) -->
+    <header class="bg-white py-6 px-4 md:px-10 flex flex-col md:flex-row justify-between items-center shadow-sm">
+        <div class="flex items-center gap-4">
+            <!-- Simulación de Logo SEP / Educación -->
+            <div class="border-r-2 border-gray-300 pr-4">
+                <h1 class="text-4xl font-bold text-[#800020] tracking-tight">Educación</h1>
+                <p class="text-xs text-gray-700 font-semibold">SECRETARÍA DE EDUCACIÓN PÚBLICA</p>
+            </div>
+            <!-- Simulación de Logo TecNM o Institución -->
+            <div class="pl-2">
+                <h2 class="text-xl font-bold text-[#1a3668]">TECNOLÓGICO</h2>
+                <p class="text-xs text-[#1a3668]">NACIONAL DE MÉXICO</p>
+            </div>
+        </div>
+        
+        <!-- Iconos de la derecha (Banderas/Contacto como en tu imagen) -->
+        <div class="hidden md:flex gap-2 text-xl mt-4 md:mt-0">
+            <span>🇺🇸</span><span>🇲🇽</span><span>🇫🇷</span>
+        </div>
+    </header>
+
+    <!-- 3. BARRA DE NAVEGACIÓN OSCURA (Con tus tablas de Supabase) -->
+    <nav class="bg-[#333333] text-white text-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap">
+            
+            <!-- Botón de Inicio -->
+            <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center" onclick="cargarSeccion('Inicio')">
+                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            </button>
+
+            <!-- Menú: Alumnado -->
+            <div class="dropdown relative">
+                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
+                    Alumnado <span class="ml-1 text-xs">▼</span>
+                </button>
+                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[150px] border-t-2 border-[#1a3668] z-50">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Alumnos')">Alumnos</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Grupos')">Grupos</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('Kardex')">Kardex</a>
+                </div>
+            </div>
+
+            <!-- Menú: Personal -->
+            <div class="dropdown relative">
+                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
+                    Personal <span class="ml-1 text-xs">▼</span>
+                </button>
+                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[150px] border-t-2 border-[#1a3668] z-50">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('Docentes')">Docentes</a>
+                </div>
+            </div>
+
+            <!-- Menú: Oferta Educativa -->
+            <div class="dropdown relative">
+                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
+                    Academia <span class="ml-1 text-xs">▼</span>
+                </button>
+                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[200px] border-t-2 border-[#1a3668] z-50">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Materias')">Materias</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('PlanesEstudio')">Planes de Estudio</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Reticulas')">Retículas</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('CargaAcademica')">Carga Académica</a>
+                </div>
+            </div>
+
+            <!-- Menú: Administración -->
+            <div class="dropdown relative">
+                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
+                    Administración <span class="ml-1 text-xs">▼</span>
+                </button>
+                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[150px] border-t-2 border-[#1a3668] z-50">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('Pagos')">Pagos</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 4. ÁREA PRINCIPAL (Noticias o Tablas) -->
+    <main class="max-w-7xl mx-auto p-4 mt-2">
+        <!-- Contenedor del Sistema -->
+        <div class="bg-white border-t-4 border-[#1a3668] p-6 rounded shadow-md min-h-[500px]">
+            
+            <div class="flex justify-between items-center border-b pb-3 mb-6">
+                <h2 id="titulo-seccion" class="text-2xl font-bold text-gray-800 uppercase">Inicio / Panel Principal</h2>
+                <button id="btn-nuevo" class="hidden bg-[#1a3668] hover:bg-blue-900 text-white px-4 py-2 rounded text-sm shadow">
+                    + Nuevo Registro
+                </button>
+            </div>
+            
+            <p id="mensaje-instruccion" class="text-gray-600 mb-6">
+                Bienvenido al sistema institucional. Utiliza el menú superior para acceder a los registros de la base de datos (Alumnos, Docentes, etc.).
+            </p>
+            
+            <!-- Aquí se inyectará la tabla de datos -->
+            <div id="contenedor-tabla" class="overflow-x-auto">
+                <!-- Imagen de "Noticias" de relleno para la vista de inicio -->
+                <div class="bg-[#1a3668] text-white p-10 text-center rounded">
+                    <h3 class="text-4xl font-light mb-2">NOTICIAS RECIENTES</h3>
+                    <p class="text-sm">Área de avisos institucionales. Selecciona un elemento del menú para gestionar la base de datos.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 5. FOOTER (Estilo Gobierno) -->
+    <footer class="bg-[#11322b] text-white p-8 mt-10 text-center text-sm">
+        <p>Centro Educativo - Sistema de Gestión Académica</p>
+        <p class="text-gray-400 mt-2">Este es un proyecto de investigación escolar con conexión a Supabase.</p>
+    </footer>
+
+    <!-- SCRIPT DE INTERFAZ -->
+    <script>
+        function cargarSeccion(nombreTabla) {
+            const titulo = document.getElementById('titulo-seccion');
+            const instruccion = document.getElementById('mensaje-instruccion');
+            const btnNuevo = document.getElementById('btn-nuevo');
+            const contenedor = document.getElementById('contenedor-tabla');
+
+            if(nombreTabla === 'Inicio') {
+                titulo.textContent = "INICIO / PANEL PRINCIPAL";
+                instruccion.classList.remove('hidden');
+                btnNuevo.classList.add('hidden');
+                contenedor.innerHTML = `
+                <div class="bg-[#1a3668] text-white p-10 text-center rounded">
+                    <h3 class="text-4xl font-light mb-2">NOTICIAS RECIENTES</h3>
+                    <p class="text-sm">Área de avisos institucionales. Selecciona un elemento del menú para gestionar la base de datos.</p>
+                </div>`;
+                return;
+            }
+
+            // Cambiar textos para las tablas
+            titulo.textContent = "GESTIÓN DE " + nombreTabla.toUpperCase();
+            instruccion.classList.add('hidden');
+            btnNuevo.classList.remove('hidden');
+
+            // Mensaje temporal antes de conectar a la base de datos
+            contenedor.innerHTML = `
+                <div class="border border-gray-200 rounded p-6 bg-gray-50 text-center">
+                    <p class="text-gray-700 mb-4">Módulo de <strong>${nombreTabla}</strong> listo para conectar.</p>
+                    <p class="text-sm text-gray-500">Aquí se mostrará una tabla con los datos que descargaremos de Supabase.</p>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
