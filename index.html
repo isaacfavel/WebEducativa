@@ -1,138 +1,399 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Institucional - Centro Educativo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Agregamos un poco de CSS para asegurar que los menús desplegables funcionen bien con hover -->
-    <style>
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 font-sans">
-    
-    <!-- 1. CINTILLO SUPERIOR (Estilo Gobierno) -->
-    <div class="bg-[#11322b] text-white text-xs py-2 px-4 md:px-10 flex justify-end gap-6 items-center">
-        <a href="#" class="hover:underline">Gobierno</a>
-        <a href="#" class="hover:underline">Participa</a>
-        <a href="#" class="hover:underline">Datos</a>
-        <span class="cursor-pointer">🔍</span>
-    </div>
 
-    <!-- 2. CABECERA DE LOGOS (Estilo Institucional) -->
-    <header class="bg-white py-6 px-4 md:px-10 flex flex-col md:flex-row justify-between items-center shadow-sm">
-        <div class="flex items-center gap-4">
-            <!-- Simulación de Logo SEP / Educación -->
-            <div class="border-r-2 border-gray-300 pr-4">
-                <h1 class="text-4xl font-bold text-[#800020] tracking-tight">Educación</h1>
-                <p class="text-xs text-gray-700 font-semibold">SECRETARÍA DE EDUCACIÓN PÚBLICA</p>
+    <title>Sistema Institucional | Centro Educativo</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Iconos SVG integrados: no requieren otra biblioteca -->
+</head>
+
+<body class="font-sans">
+
+    <!-- 2. CABECERA INSTITUCIONAL -->
+    <header class="institution-header bg-white px-4 md:px-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row
+                    justify-between items-center gap-5 py-6">
+
+            <div class="institution-brand flex items-center gap-5">
+
+                <!-- Identidad educativa -->
+                <div class="education-brand pr-5">
+                    <div class="flex items-center gap-2">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             class="brand-icon w-9 h-9">
+                            <path d="M12 3 3 8l9 5 9-5-9-5Z"></path>
+                            <path d="M7 10.3V15c3 2.5 7 2.5 10 0v-4.7"></path>
+                            <path d="M21 8v7"></path>
+                        </svg>
+
+                        <h1 class="text-3xl md:text-4xl font-bold tracking-tight logo-sep">
+                            Educación
+                        </h1>
+                    </div>
+
+                    <p class="text-[10px] md:text-xs font-semibold tracking-wider mt-1">
+                        SECRETARÍA DE EDUCACIÓN PÚBLICA
+                    </p>
+                </div>
+
+                <!-- Identidad tecnológica -->
+                <div class="technm-brand pl-5">
+                    <div class="flex items-center gap-2">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             class="w-8 h-8">
+                            <path d="M4 20V7l8-4 8 4v13"></path>
+                            <path d="M8 20v-6h8v6"></path>
+                            <path d="M8 9h.01M12 9h.01M16 9h.01"></path>
+                        </svg>
+
+                        <div>
+                            <h2 class="text-lg md:text-xl font-bold tracking-wide">
+                                TECNOLÓGICO
+                            </h2>
+                            <p class="text-xs font-semibold tracking-widest">
+                                NACIONAL DE MÉXICO
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- Simulación de Logo TecNM o Institución -->
-            <div class="pl-2">
-                <h2 class="text-xl font-bold text-[#1a3668]">TECNOLÓGICO</h2>
-                <p class="text-xs text-[#1a3668]">NACIONAL DE MÉXICO</p>
+
+            <!-- Idiomas -->
+            <div class="language-options flex items-center gap-2">
+                <span class="language-label">Idioma</span>
+
+                <span class="language-chip" title="Inglés" aria-label="Inglés">
+                    🇺🇸
+                </span>
+
+                <span class="language-chip active" title="Español"
+                      aria-label="Español">
+                    🇲🇽
+                </span>
+
+                <span class="language-chip" title="Francés" aria-label="Francés">
+                    🇫🇷
+                </span>
             </div>
-        </div>
-        
-        <!-- Iconos de la derecha (Banderas/Contacto como en tu imagen) -->
-        <div class="hidden md:flex gap-2 text-xl mt-4 md:mt-0">
-            <span>🇺🇸</span><span>🇲🇽</span><span>🇫🇷</span>
+
         </div>
     </header>
 
-    <!-- 3. BARRA DE NAVEGACIÓN OSCURA (Con tus tablas de Supabase) -->
-    <nav class="bg-[#333333] text-white text-sm">
-        <div class="max-w-7xl mx-auto flex flex-wrap">
-            
-            <!-- Botón de Inicio -->
-            <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center" onclick="cargarSeccion('Inicio')">
-                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+    <!-- 3. NAVEGACIÓN PRINCIPAL -->
+    <nav class="nav-bar text-white" aria-label="Navegación principal">
+        <div class="max-w-7xl mx-auto nav-container">
+
+            <!-- Inicio -->
+            <button type="button"
+                    class="nav-btn nav-home"
+                    aria-label="Inicio"
+                    onclick="cargarSeccion('Inicio')">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8"
+                     class="w-5 h-5">
+                    <path d="m3 10 9-7 9 7"></path>
+                    <path d="M5 9v11h14V9"></path>
+                    <path d="M9 20v-7h6v7"></path>
+                </svg>
+
+                <span>Inicio</span>
             </button>
 
-            <!-- Menú: Alumnado -->
+            <!-- Alumnado -->
             <div class="dropdown relative">
-                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
-                    Alumnado <span class="ml-1 text-xs">▼</span>
+                <button type="button" class="nav-btn">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8"
+                         class="w-5 h-5">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="10" cy="7" r="4"></circle>
+                        <path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+
+                    <span>Alumnado</span>
+
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         class="dropdown-chevron w-4 h-4">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
                 </button>
-                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[150px] border-t-2 border-[#1a3668] z-50">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Alumnos')">Alumnos</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Grupos')">Grupos</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('Kardex')">Kardex</a>
+
+                <div class="dropdown-menu">
+                    <a href="#" onclick="cargarSeccion('Alumnos')">
+                        <span>Alumnos</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('Grupos')">
+                        <span>Grupos</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('Kardex')">
+                        <span>Kardex</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Menú: Personal -->
+            <!-- Personal -->
             <div class="dropdown relative">
-                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
-                    Personal <span class="ml-1 text-xs">▼</span>
+                <button type="button" class="nav-btn">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8"
+                         class="w-5 h-5">
+                        <rect x="3" y="7" width="18" height="14" rx="2"></rect>
+                        <path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"></path>
+                    </svg>
+
+                    <span>Personal</span>
+
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         class="dropdown-chevron w-4 h-4">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
                 </button>
-                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[150px] border-t-2 border-[#1a3668] z-50">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('Docentes')">Docentes</a>
+
+                <div class="dropdown-menu">
+                    <a href="#" onclick="cargarSeccion('Docentes')">
+                        <span>Docentes</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Menú: Oferta Educativa -->
+            <!-- Academia -->
             <div class="dropdown relative">
-                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
-                    Academia <span class="ml-1 text-xs">▼</span>
+                <button type="button" class="nav-btn">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8"
+                         class="w-5 h-5">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path>
+                        <path d="M8 7h8M8 11h8"></path>
+                    </svg>
+
+                    <span>Academia</span>
+
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         class="dropdown-chevron w-4 h-4">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
                 </button>
-                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[200px] border-t-2 border-[#1a3668] z-50">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Materias')">Materias</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('PlanesEstudio')">Planes de Estudio</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b" onclick="cargarSeccion('Reticulas')">Retículas</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('CargaAcademica')">Carga Académica</a>
+
+                <div class="dropdown-menu">
+                    <a href="#" onclick="cargarSeccion('Materias')">
+                        <span>Materias</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('PlanesEstudio')">
+                        <span>Planes de Estudio</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('Reticulas')">
+                        <span>Retículas</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('CargaAcademica')">
+                        <span>Carga Académica</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Menú: Administración -->
+            <!-- Administración -->
             <div class="dropdown relative">
-                <button class="px-4 py-3 hover:bg-gray-700 transition flex items-center">
-                    Administración <span class="ml-1 text-xs">▼</span>
+                <button type="button" class="nav-btn">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8"
+                         class="w-5 h-5">
+                        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                        <path d="M3 10h18M7 15h3"></path>
+                    </svg>
+
+                    <span>Administración</span>
+
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         class="dropdown-chevron w-4 h-4">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
                 </button>
-                <div class="dropdown-menu absolute hidden bg-white text-gray-800 shadow-lg min-w-[150px] border-t-2 border-[#1a3668] z-50">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="cargarSeccion('Pagos')">Pagos</a>
+
+                <div class="dropdown-menu">
+                    <a href="#" onclick="cargarSeccion('Pagos')">
+                        <span>Pagos</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
                 </div>
             </div>
+
         </div>
     </nav>
 
-    <!-- 4. ÁREA PRINCIPAL (Noticias o Tablas) -->
-    <main class="max-w-7xl mx-auto p-4 mt-2">
-        <!-- Contenedor del Sistema -->
-        <div class="bg-white border-t-4 border-[#1a3668] p-6 rounded shadow-md min-h-[500px]">
-            
-            <div class="flex justify-between items-center border-b pb-3 mb-6">
-                <h2 id="titulo-seccion" class="text-2xl font-bold text-gray-800 uppercase">Inicio / Panel Principal</h2>
-                <button id="btn-nuevo" class="hidden bg-[#1a3668] hover:bg-blue-900 text-white px-4 py-2 rounded text-sm shadow">
-                    + Nuevo Registro
+    <!-- 4. ÁREA PRINCIPAL -->
+    <main class="max-w-7xl mx-auto main-container">
+
+        <div class="main-panel bg-white rounded-xl">
+
+            <!-- Encabezado del módulo -->
+            <div class="panel-heading">
+                <div class="heading-title">
+                    <span class="section-indicator"></span>
+
+                    <div>
+                        <p class="eyebrow">SISTEMA INSTITUCIONAL</p>
+
+                        <h2 id="titulo-seccion">
+                            Inicio / Panel Principal
+                        </h2>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-nuevo"
+                        class="btn-primary hidden">
+
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         class="w-5 h-5">
+                        <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+
+                    <span>Nuevo registro</span>
                 </button>
             </div>
-            
-            <p id="mensaje-instruccion" class="text-gray-600 mb-6">
-                Bienvenido al sistema institucional. Utiliza el menú superior para acceder a los registros de la base de datos (Alumnos, Docentes, etc.).
+
+            <!-- Mensaje inicial -->
+            <p id="mensaje-instruccion" class="instruction-text">
+                Bienvenido al sistema institucional. Utiliza el menú
+                superior para acceder a los registros de la base de datos.
             </p>
-            
-            <!-- Aquí se inyectará la tabla de datos -->
-            <div id="contenedor-tabla" class="overflow-x-auto">
-                <!-- Imagen de "Noticias" de relleno para la vista de inicio -->
-                <div class="bg-[#1a3668] text-white p-10 text-center rounded">
-                    <h3 class="text-4xl font-light mb-2">NOTICIAS RECIENTES</h3>
-                    <p class="text-sm">Área de avisos institucionales. Selecciona un elemento del menú para gestionar la base de datos.</p>
+
+            <!-- Contenido dinámico -->
+            <div id="contenedor-tabla">
+
+                <div class="welcome-banner">
+
+                    <div class="welcome-content">
+                        <span class="welcome-label">
+                            CENTRO EDUCATIVO
+                        </span>
+
+                        <h3>Noticias recientes</h3>
+
+                        <p>
+                            Mantente informado sobre los avisos y novedades
+                            de nuestra institución.
+                        </p>
+                    </div>
+
+                    <div class="welcome-illustration" aria-hidden="true">
+                        <svg viewBox="0 0 180 150" fill="none">
+                            <rect x="36" y="23" width="108" height="104"
+                                  rx="10" stroke="currentColor"
+                                  stroke-width="3" opacity=".8"></rect>
+
+                            <path d="M60 51h60M60 69h60M60 87h37"
+                                  stroke="currentColor"
+                                  stroke-width="4" stroke-linecap="round"></path>
+
+                            <circle cx="130" cy="111" r="24"
+                                    fill="#16A394"></circle>
+
+                            <path d="m119 111 8 8 14-16"
+                                  stroke="white" stroke-width="4"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+
                 </div>
+
+                <!-- Espacio para futuros avisos institucionales -->
+                <div class="news-placeholder">
+                    <div class="news-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             class="w-6 h-6">
+                            <path d="M4 5h16v15H4z"></path>
+                            <path d="M8 9h8M8 13h8M8 17h5"></path>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h4>Información institucional</h4>
+                        <p>
+                            En este espacio podrás consultar próximos avisos,
+                            comunicados y novedades escolares.
+                        </p>
+                    </div>
+                </div>
+
             </div>
+
         </div>
+
+        <!-- Pie informativo -->
+        <div class="page-meta">
+            <span>Portal de gestión académica</span>
+            <span>Plataforma institucional</span>
+        </div>
+
     </main>
 
-    <!-- 5. FOOTER (Estilo Gobierno) -->
-    <footer class="bg-[#11322b] text-white p-8 mt-10 text-center text-sm">
-        <p>Centro Educativo - Sistema de Gestión Académica</p>
-        <p class="text-gray-400 mt-2">Este es un proyecto de investigación escolar con conexión a Supabase.</p>
+    <!-- 5. FOOTER -->
+    <footer class="footer-inst">
+        <div class="max-w-7xl mx-auto footer-content">
+
+            <div class="footer-brand">
+                <div class="footer-icon">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8"
+                         class="w-6 h-6">
+                        <path d="m12 3 9 5-9 5-9-5 9-5Z"></path>
+                        <path d="M5 11v5l7 4 7-4v-5"></path>
+                    </svg>
+                </div>
+
+                <div>
+                    <p class="footer-title">
+                        Centro Educativo
+                    </p>
+
+                    <p class="footer-subtitle">
+                        Sistema de Gestión Académica
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-description">
+                <p>
+                    Proyecto de investigación escolar con conexión a Supabase.
+                </p>
+                <p class="footer-copyright">
+                    Portal de administración institucional
+                </p>
+            </div>
+
+        </div>
     </footer>
 
-    <!-- SCRIPT DE INTERFAZ -->
+    <!-- SCRIPT DE INTERFAZ: FUNCIONALIDAD CONSERVADA -->
     <script>
         function cargarSeccion(nombreTabla) {
             const titulo = document.getElementById('titulo-seccion');
@@ -144,27 +405,79 @@
                 titulo.textContent = "INICIO / PANEL PRINCIPAL";
                 instruccion.classList.remove('hidden');
                 btnNuevo.classList.add('hidden');
+
                 contenedor.innerHTML = `
-                <div class="bg-[#1a3668] text-white p-10 text-center rounded">
-                    <h3 class="text-4xl font-light mb-2">NOTICIAS RECIENTES</h3>
-                    <p class="text-sm">Área de avisos institucionales. Selecciona un elemento del menú para gestionar la base de datos.</p>
+                <div class="welcome-banner">
+                    <div class="welcome-content">
+                        <span class="welcome-label">CENTRO EDUCATIVO</span>
+                        <h3>Noticias recientes</h3>
+                        <p>Mantente informado sobre los avisos y novedades de nuestra institución.</p>
+                    </div>
+                    <div class="welcome-illustration" aria-hidden="true">
+                        <svg viewBox="0 0 180 150" fill="none">
+                            <rect x="36" y="23" width="108" height="104"
+                                  rx="10" stroke="currentColor"
+                                  stroke-width="3" opacity=".8"></rect>
+                            <path d="M60 51h60M60 69h60M60 87h37"
+                                  stroke="currentColor" stroke-width="4"
+                                  stroke-linecap="round"></path>
+                            <circle cx="130" cy="111" r="24"
+                                    fill="#16A394"></circle>
+                            <path d="m119 111 8 8 14-16"
+                                  stroke="white" stroke-width="4"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="news-placeholder">
+                    <div class="news-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             class="w-6 h-6">
+                            <path d="M4 5h16v15H4z"></path>
+                            <path d="M8 9h8M8 13h8M8 17h5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Información institucional</h4>
+                        <p>En este espacio podrás consultar próximos avisos, comunicados y novedades escolares.</p>
+                    </div>
                 </div>`;
+
                 return;
             }
 
-            // Cambiar textos para las tablas
             titulo.textContent = "GESTIÓN DE " + nombreTabla.toUpperCase();
             instruccion.classList.add('hidden');
             btnNuevo.classList.remove('hidden');
 
-            // Mensaje temporal antes de conectar a la base de datos
             contenedor.innerHTML = `
-                <div class="border border-gray-200 rounded p-6 bg-gray-50 text-center">
-                    <p class="text-gray-700 mb-4">Módulo de <strong>${nombreTabla}</strong> listo para conectar.</p>
-                    <p class="text-sm text-gray-500">Aquí se mostrará una tabla con los datos que descargaremos de Supabase.</p>
+                <div class="module-placeholder">
+                    <div class="module-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.8"
+                             class="w-7 h-7">
+                            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                            <path d="M3 9h18M8 13h8M8 16h5"></path>
+                        </svg>
+                    </div>
+
+                    <h3>Módulo de ${nombreTabla}</h3>
+
+                    <p>
+                        Este módulo está listo para conectar con la base de datos.
+                    </p>
+
+                    <p class="module-hint">
+                        Aquí se mostrarán las tablas y los registros
+                        correspondientes a este apartado.
+                    </p>
                 </div>
             `;
         }
     </script>
+
 </body>
 </html>
