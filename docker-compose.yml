@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web-educativa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web_educativa_app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production

@@ -1,0 +1,25 @@
+# Entorno y credenciales confidenciales
+.env
+.env.local
+.env.*.local
+
+# Dependencias (si se llegara a usar npm/node)
+node_modules/
+package-lock.json
+
+# Archivos del sistema y logs
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+*.log
+
+# Editores y entornos de desarrollo
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

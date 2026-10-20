@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sistema Institucional | Centro Educativo</title>
+    <title>Sistema Institucional | Centro Educativo - TecNM</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Iconos SVG integrados: no requieren otra biblioteca -->
+    <!-- Iconos SVG integrados: no requieren bibliotecas externas pesadas -->
 </head>
 
 <body class="font-sans">
@@ -66,22 +65,31 @@
                 </div>
             </div>
 
-            <!-- Idiomas -->
-            <div class="language-options flex items-center gap-2">
-                <span class="language-label">Idioma</span>
+            <!-- Conexión y Opciones -->
+            <div class="flex items-center gap-4 flex-wrap">
+                <!-- Indicador de conexión Supabase en vivo -->
+                <div id="status-indicator" class="connection-badge checking">
+                    <span class="status-dot checking"></span>
+                    <span>Conectando...</span>
+                </div>
 
-                <span class="language-chip" title="Inglés" aria-label="Inglés">
-                    🇺🇸
-                </span>
+                <!-- Idiomas -->
+                <div class="language-options flex items-center gap-2">
+                    <span class="language-label">Idioma</span>
 
-                <span class="language-chip active" title="Español"
-                      aria-label="Español">
-                    🇲🇽
-                </span>
+                    <span class="language-chip" title="Inglés" aria-label="Inglés">
+                        🇺🇸
+                    </span>
 
-                <span class="language-chip" title="Francés" aria-label="Francés">
-                    🇫🇷
-                </span>
+                    <span class="language-chip active" title="Español"
+                          aria-label="Español">
+                        🇲🇽
+                    </span>
+
+                    <span class="language-chip" title="Francés" aria-label="Francés">
+                        🇫🇷
+                    </span>
+                </div>
             </div>
 
         </div>
@@ -243,6 +251,53 @@
                 </div>
             </div>
 
+            <!-- Vistas y Reportes -->
+            <div class="dropdown relative">
+                <button type="button" class="nav-btn">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8"
+                         class="w-5 h-5">
+                        <path d="M3 3v18h18"></path>
+                        <path d="m19 9-5 5-4-4-3 3"></path>
+                    </svg>
+
+                    <span>Vistas & Reportes</span>
+
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         class="dropdown-chevron w-4 h-4">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </button>
+
+                <div class="dropdown-menu">
+                    <a href="#" onclick="cargarSeccion('vista_carga_alumnos')">
+                        <span>Vista Carga Alumnos</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('vista_kardex_general')">
+                        <span>Vista Kardex General</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('vista_estado_financiero')">
+                        <span>Vista Estado Financiero</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('reporte_promedios')">
+                        <span>Promedios y Aprobación</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+
+                    <a href="#" onclick="cargarSeccion('reporte_pagos_pendientes')">
+                        <span>Cartera Pagos Pendientes</span>
+                        <span class="menu-arrow">›</span>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </nav>
 
@@ -278,80 +333,23 @@
                 </button>
             </div>
 
-            <!-- Mensaje inicial -->
+            <!-- Mensaje inicial o descripción -->
             <p id="mensaje-instruccion" class="instruction-text">
                 Bienvenido al sistema institucional. Utiliza el menú
                 superior para acceder a los registros de la base de datos.
             </p>
 
-            <!-- Contenido dinámico -->
+            <!-- Contenedor dinámico -->
             <div id="contenedor-tabla">
-
-                <div class="welcome-banner">
-
-                    <div class="welcome-content">
-                        <span class="welcome-label">
-                            CENTRO EDUCATIVO
-                        </span>
-
-                        <h3>Noticias recientes</h3>
-
-                        <p>
-                            Mantente informado sobre los avisos y novedades
-                            de nuestra institución.
-                        </p>
-                    </div>
-
-                    <div class="welcome-illustration" aria-hidden="true">
-                        <svg viewBox="0 0 180 150" fill="none">
-                            <rect x="36" y="23" width="108" height="104"
-                                  rx="10" stroke="currentColor"
-                                  stroke-width="3" opacity=".8"></rect>
-
-                            <path d="M60 51h60M60 69h60M60 87h37"
-                                  stroke="currentColor"
-                                  stroke-width="4" stroke-linecap="round"></path>
-
-                            <circle cx="130" cy="111" r="24"
-                                    fill="#16A394"></circle>
-
-                            <path d="m119 111 8 8 14-16"
-                                  stroke="white" stroke-width="4"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-
-                </div>
-
-                <!-- Espacio para futuros avisos institucionales -->
-                <div class="news-placeholder">
-                    <div class="news-placeholder-icon">
-                        <svg viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.7"
-                             class="w-6 h-6">
-                            <path d="M4 5h16v15H4z"></path>
-                            <path d="M8 9h8M8 13h8M8 17h5"></path>
-                        </svg>
-                    </div>
-
-                    <div>
-                        <h4>Información institucional</h4>
-                        <p>
-                            En este espacio podrás consultar próximos avisos,
-                            comunicados y novedades escolares.
-                        </p>
-                    </div>
-                </div>
-
+                <!-- Se llena dinámicamente con app.js -->
             </div>
 
         </div>
 
         <!-- Pie informativo -->
         <div class="page-meta">
-            <span>Portal de gestión académica</span>
-            <span>Plataforma institucional</span>
+            <span>Portal de gestión académica conectado a Supabase REST v1</span>
+            <span>Plataforma institucional TecNM | Taller de Investigación II</span>
         </div>
 
     </main>
@@ -393,91 +391,29 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE INTERFAZ: FUNCIONALIDAD CONSERVADA -->
-    <script>
-        function cargarSeccion(nombreTabla) {
-            const titulo = document.getElementById('titulo-seccion');
-            const instruccion = document.getElementById('mensaje-instruccion');
-            const btnNuevo = document.getElementById('btn-nuevo');
-            const contenedor = document.getElementById('contenedor-tabla');
+    <!-- 6. MODAL INTERACTIVO PARA CRUD -->
+    <div id="modal-formulario" class="modal-overlay hidden" role="dialog" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modal-titulo">Título del Modal</h3>
+                <button type="button" class="modal-close-btn" onclick="cerrarModal()" aria-label="Cerrar modal">
+                    &times;
+                </button>
+            </div>
+            <div id="modal-cuerpo" class="modal-body">
+                <!-- Se inyecta dinámicamente -->
+            </div>
+        </div>
+    </div>
 
-            if(nombreTabla === 'Inicio') {
-                titulo.textContent = "INICIO / PANEL PRINCIPAL";
-                instruccion.classList.remove('hidden');
-                btnNuevo.classList.add('hidden');
+    <!-- 7. CONTENEDOR DE NOTIFICACIONES TOAST -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-                contenedor.innerHTML = `
-                <div class="welcome-banner">
-                    <div class="welcome-content">
-                        <span class="welcome-label">CENTRO EDUCATIVO</span>
-                        <h3>Noticias recientes</h3>
-                        <p>Mantente informado sobre los avisos y novedades de nuestra institución.</p>
-                    </div>
-                    <div class="welcome-illustration" aria-hidden="true">
-                        <svg viewBox="0 0 180 150" fill="none">
-                            <rect x="36" y="23" width="108" height="104"
-                                  rx="10" stroke="currentColor"
-                                  stroke-width="3" opacity=".8"></rect>
-                            <path d="M60 51h60M60 69h60M60 87h37"
-                                  stroke="currentColor" stroke-width="4"
-                                  stroke-linecap="round"></path>
-                            <circle cx="130" cy="111" r="24"
-                                    fill="#16A394"></circle>
-                            <path d="m119 111 8 8 14-16"
-                                  stroke="white" stroke-width="4"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="news-placeholder">
-                    <div class="news-placeholder-icon">
-                        <svg viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.7"
-                             class="w-6 h-6">
-                            <path d="M4 5h16v15H4z"></path>
-                            <path d="M8 9h8M8 13h8M8 17h5"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4>Información institucional</h4>
-                        <p>En este espacio podrás consultar próximos avisos, comunicados y novedades escolares.</p>
-                    </div>
-                </div>`;
-
-                return;
-            }
-
-            titulo.textContent = "GESTIÓN DE " + nombreTabla.toUpperCase();
-            instruccion.classList.add('hidden');
-            btnNuevo.classList.remove('hidden');
-
-            contenedor.innerHTML = `
-                <div class="module-placeholder">
-                    <div class="module-placeholder-icon">
-                        <svg viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.8"
-                             class="w-7 h-7">
-                            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                            <path d="M3 9h18M8 13h8M8 16h5"></path>
-                        </svg>
-                    </div>
-
-                    <h3>Módulo de ${nombreTabla}</h3>
-
-                    <p>
-                        Este módulo está listo para conectar con la base de datos.
-                    </p>
-
-                    <p class="module-hint">
-                        Aquí se mostrarán las tablas y los registros
-                        correspondientes a este apartado.
-                    </p>
-                </div>
-            `;
-        }
-    </script>
+    <!-- 8. SCRIPTS DEL SISTEMA -->
+    <script src="js/config.js"></script>
+    <script src="js/schema.js"></script>
+    <script src="js/supabaseClient.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>
