@@ -41,7 +41,7 @@ function updateConnectionIndicator(status, text) {
 
     if (status === 'online') {
         el.className = 'connection-badge online';
-        el.innerHTML = '<span class="status-dot online"></span> Supabase Conectado';
+        el.innerHTML = '<span class="status-dot online"></span> Conectado';
     } else if (status === 'warning') {
         el.className = 'connection-badge warning';
         el.innerHTML = '<span class="status-dot warning"></span> Supabase (Verificar RLS)';
@@ -928,12 +928,6 @@ async function renderDashboard(contenedor) {
                     <h5>⚠️ Pagos Pendientes</h5>
                     <p>Listado de estudiantes con pagos vencidos o pendientes con semáforo de tiempo.</p>
                     <span class="quick-link">Abrir reporte →</span>
-                </div>
-
-                <div class="quick-card" onclick="abrirModalRLS()">
-                    <h5>🛠️ Configuración RLS Supabase</h5>
-                    <p>Ver y copiar el script de políticas Row Level Security para la base de datos.</p>
-                    <span class="quick-link">Ver script SQL →</span>
                 </div>
             </div>
         </div>
