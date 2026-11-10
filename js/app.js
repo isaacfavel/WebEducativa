@@ -41,7 +41,7 @@ function updateConnectionIndicator(status, text) {
 
     if (status === 'online') {
         el.className = 'connection-badge online';
-        el.innerHTML = '<span class="status-dot online"></span> Conectado';
+        el.innerHTML = '<span class="status-dot online"></span> Supabase Conectado';
     } else if (status === 'warning') {
         el.className = 'connection-badge warning';
         el.innerHTML = '<span class="status-dot warning"></span> Supabase (Verificar RLS)';
